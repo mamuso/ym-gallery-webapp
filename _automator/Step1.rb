@@ -25,7 +25,6 @@ end
 require "zip"
 
 class ZipFileGenerator
-
   # Initialize with the directory to zip and the location of the output archive.
   def initialize(inputDir, outputFile)
     @inputDir = inputDir
@@ -36,7 +35,6 @@ class ZipFileGenerator
   def write()
     entries = Dir.entries(@inputDir); entries.delete("."); entries.delete(".."); entries.delete("yamproject.json"); entries.delete(".DS_Store")
     io = Zip::File.open(@outputFile, Zip::File::CREATE);
-
     writeEntries(entries, "", io)
     io.close();
   end
@@ -44,7 +42,6 @@ class ZipFileGenerator
   # A helper method to make the recursion work.
   private
   def writeEntries(entries, path, io)
-
     entries.each { |e|
       zipFilePath = path == "" ? e : File.join(path, e)
       diskFilePath = File.join(@inputDir, zipFilePath)
@@ -57,14 +54,32 @@ class ZipFileGenerator
       end
     }
   end
-
 end
 
 
+# Helper to build the json for files
+def directory_hash(path, name=nil)
+  data = {:folder => (name || path.split("/").last)}
+  data[:children] = children = []
+  Dir.foreach(path) do |entry|
+    next if (entry == '..' || entry == '.' || entry == 'yamproject.json')
+    full_path = File.join(path, entry)
+    if File.directory?(full_path)
+      children << directory_hash(full_path, entry)
+    else
+      children << entry
+    end
+  end
+  return data
+end
+
+# This is really poorly done, but... 
 if Dir.exist?(dsbuilder)
   # Clean it!
   FileUtils.rm_r Dir.glob(dsbuilder+'/projects/*')
   projects = Dir[dropbox+"/Yammer Product/**/yamproject.json"]
+
+  # Pack all the projects!
   projects.each do |project|
     project_data = JSON.parse(File.read(project))
 
@@ -73,31 +88,52 @@ if Dir.exist?(dsbuilder)
       project_path = project.split("yamproject.json")[0]
       project_dest = dsbuilder+"/projects/"+slug
 
+      # Copying and generating the json
       FileUtils.cp_r(project_path, project_dest)
-
+      files = directory_hash(project_dest)
       json_data = {
         'project' => {
           'id' => slug,
-          'title' => project_data["title"]
+          'title' => project_data["title"],
+          'files' => files
         }
       }
-
       f = File.new(project_dest+"/yamproject.json", "w")
       f.write(json_data.to_json) 
       f.close
-      
+
       # Zip it
       zf = ZipFileGenerator.new(project_dest, project_dest+"/"+slug+".zip")
       zf.write()
     end
   end
+
+  # Build projecs.yaml
+  pd = []
+  projects = Dir[dsbuilder+"/projects/**/yamproject.json"]
+  projects.each do |project|
+    project_data = JSON.parse(File.read(project))
+    data = {:project => {}}
+    data[:project][:id] = project_data['project']['id']
+    data[:project][:title] = project_data['project']['title']
+    pd << data
+  end
+
+  json_data = {
+    'projects' => pd.join(",")
+  }
+
+  f = File.new(dsbuilder+"/projects/projects.json", "w")
+  f.write(json_data.to_json) 
+  f.close
+
 end
 
 
 
 # ===============================================
 # 
-#   Returning the file list
+#   Returning the file list to make the thumbnails
 # 
 # ===============================================
 
