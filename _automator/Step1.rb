@@ -113,15 +113,14 @@ if Dir.exist?(dsbuilder)
   projects = Dir[dsbuilder+"/projects/**/yamproject.json"]
   projects.each do |project|
     project_data = JSON.parse(File.read(project))
-    data = {'project' => {}}
-    data['project']['id'] = project_data['project']['id']
-    data['project']['title'] = project_data['project']['title']
+    data = {}
+    data['_id'] = project_data['project']['id']
+    data['id'] = project_data['project']['id']
+    data['title'] = project_data['project']['title']
     pd << data
   end
 
-  json_data = {
-    'projects' => [pd.join(",")]
-  }
+  json_data = {'projects' => pd}
 
   f = File.new(dsbuilder+"/projects/projects.json", "w")
   f.write(json_data.to_json) 
