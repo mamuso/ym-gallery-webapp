@@ -18,3 +18,4 @@ testem.log
 
 .grunt
 public/projects
+public/assets/projects
