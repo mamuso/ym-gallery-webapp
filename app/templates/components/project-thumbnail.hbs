@@ -1,0 +1,8 @@
+  {{#if value.children}}
+    {{value.folder}}
+    {{#each cvalue in value.children}}
+      {{project-thumbnail value=cvalue folder=value.folder project_id=project_id}}      
+    {{/each}}  
+  {{else}}
+    <img {{bind-attr src=thumbUrl}}>
+  {{/if}}

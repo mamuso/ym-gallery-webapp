@@ -62,7 +62,7 @@ def directory_hash(path, name=nil)
   data = {:folder => (name || path.split("/").last)}
   data[:children] = children = []
   Dir.foreach(path) do |entry|
-    next if (entry == '..' || entry == '.' || entry == 'yamproject.json')
+    next if (entry == '..' || entry == '.' || entry == 'yamproject.json' || entry == '.DS_Store')
     full_path = File.join(path, entry)
     if File.directory?(full_path)
       children << directory_hash(full_path, entry)
@@ -95,7 +95,7 @@ if Dir.exist?(dsbuilder)
         'project' => {
           'id' => slug,
           'title' => project_data["title"],
-          'files' => files
+          'files' => [files]
         }
       }
       f = File.new(project_dest+"/yamproject.json", "w")

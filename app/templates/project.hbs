@@ -1,5 +1,7 @@
 {{title}}
 
-{{#each files}}
-  {{showdown-addon notes}}
+{{#each file in files}}
+  {{#each value in file.children}}
+    {{project-thumbnail value=value folder=file.folder project_id=id}}
+  {{/each}}  
 {{/each}}
