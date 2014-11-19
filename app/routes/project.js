@@ -7,6 +7,7 @@ export default Ember.Route.extend({
   setupController: function( controller, model ){
     this._super( controller, model );
     model.reload();
+    controller.set('model', model);
     $(document).attr('title', model.get('title')+' — Design Projects');
     controller.ziplink = "/assets/projects/"+model.get('id')+"/"+model.get('id')+".zip";
   }

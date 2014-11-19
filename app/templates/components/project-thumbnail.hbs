@@ -6,7 +6,7 @@
       {{project-thumbnail value=cvalue folder=value.folder project_id=project_id}}      
     {{/each}}  
   {{else}}
-    <a href="#" class="thumb">
+    <a href="#" {{action 'open'}} class="thumb">
       <span class="inner-thumb">
         <img {{bind-attr src=thumbUrl}}>
       </span>

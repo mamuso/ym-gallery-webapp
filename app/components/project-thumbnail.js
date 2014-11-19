@@ -6,9 +6,9 @@ export default Ember.Component.extend({
         folder = this.get("folder"),
         id = this.get("project_id"),
         route = "",
-        value = value.split("."),
-        ext = value.pop(),
-        file = value.join(".")+"_yamthumbnail."+ext;
+        spvalue = value.split("."),
+        ext = spvalue.pop(),
+        file = spvalue.join(".")+"_yamthumbnail."+ext;
 
     if(id === folder) {
       route = "assets/projects/"+id+"/"+file;
@@ -16,5 +16,25 @@ export default Ember.Component.extend({
       route = "assets/projects/"+id+"/"+folder+"/"+file;
     }
     return route;
-  }.property( 'value' , 'folder' )
+  }.property( 'value' , 'folder' ),
+  bigUrl: function () {
+    var file = this.get("value"),
+        folder = this.get("folder"),
+        id = this.get("project_id"),
+        route = "";
+
+    if(id === folder) {
+      route = "assets/projects/"+id+"/"+file;
+    } else {
+      route = "assets/projects/"+id+"/"+folder+"/"+file;
+    }
+    return route;
+  }.property( 'value' , 'folder' ),
+  actions: {
+    open: function() {
+      console.log(this);
+      Ember.render('modal', { into: 'application', outlet: 'modal' });
+    }
+  }
+
 });
