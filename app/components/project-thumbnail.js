@@ -11,9 +11,9 @@ export default Ember.Component.extend({
         file = value.join(".")+"_yamthumbnail."+ext;
 
     if(id === folder) {
-      route = "/assets/projects/"+id+"/"+file;
+      route = "assets/projects/"+id+"/"+file;
     } else {
-      route = "/assets/projects/"+id+"/"+folder+"/"+file;
+      route = "assets/projects/"+id+"/"+folder+"/"+file;
     }
     return route;
   }.property( 'value' , 'folder' )
