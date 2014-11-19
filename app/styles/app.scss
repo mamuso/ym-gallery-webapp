@@ -1,3 +1,77 @@
-html, body {
-  margin: 20px;
+@import "_normalize";
+
+body {
+  margin: 84px 0 0 0;
+  color: #6F7883;
+}
+
+a {
+  color: #346ABB;
+  text-decoration: none; 
+  &:hover{ text-decoration: underline; }
+}
+
+h1 { 
+  font-size: 22px;
+  font-weight: normal;
+  a { color: #BCC0C5; }
+}
+
+h2 { 
+  font-size: 22px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  background: #346ABB;
+  color: #FFFFFF;
+  border-radius: 3px;
+}
+
+.title {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 15px 40px;
+  z-index: 2;
+  .button {
+    position: absolute;
+    right:40px;
+    margin: 5px 0;
+  }
+}
+
+.subfolder {
+  display: block;
+  background: #BCC0C5;
+  color: #FFFFFF;
+  padding: 15px 40px;
+  margin: 0 -20px; 
+  clear: both;
+  letter-spacing: 0;
+}
+
+.gallery {
+  background: #F7F9FA;
+  padding: 0 20px 40px;
+  letter-spacing: -4px;
+  .ember-view { display: inline; }
+  .thumb {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 24.8%;
+    letter-spacing: 0;
+    margin: 30px 0;
+    .inner-thumb {
+      display: block;
+      margin: 0 20px;
+    }
+    img { width: 100%; }
+  }
 }

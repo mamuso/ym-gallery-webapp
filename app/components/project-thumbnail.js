@@ -8,7 +8,7 @@ export default Ember.Component.extend({
         route = "",
         value = value.split("."),
         ext = value.pop(),
-        file = value.join(".")+"_."+ext;
+        file = value.join(".")+"_yamthumbnail."+ext;
 
     if(id === folder) {
       route = "/assets/projects/"+id+"/"+file;

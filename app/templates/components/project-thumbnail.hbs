@@ -1,8 +1,14 @@
   {{#if value.children}}
-    {{value.folder}}
+    <header class="subfolder">
+      <h2>{{value.folder}}</h2>
+    </header>
     {{#each cvalue in value.children}}
       {{project-thumbnail value=cvalue folder=value.folder project_id=project_id}}      
     {{/each}}  
   {{else}}
-    <img {{bind-attr src=thumbUrl}}>
+    <a href="#" class="thumb">
+      <span class="inner-thumb">
+        <img {{bind-attr src=thumbUrl}}>
+      </span>
+    </a>
   {{/if}}

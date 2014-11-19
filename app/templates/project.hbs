@@ -1,7 +1,14 @@
-{{title}}
+<header class='title'>
+  <a {{bind-attr class=":button" href="ziplink"}}><strong>Download project</strong> (.zip)</a>
+  <h1>
+    {{#link-to 'projects'}}DSN{{/link-to}} {{#if title}}{{title}}{{/if}}
+  </h1>
+</header>
 
+<section class="gallery">
 {{#each file in files}}
   {{#each value in file.children}}
     {{project-thumbnail value=value folder=file.folder project_id=id}}
   {{/each}}  
 {{/each}}
+</section>
