@@ -19,5 +19,6 @@ dsbuilder = dropbox+'/DesignSite'
 
 # This is really poorly done, but... 
 if Dir.exist?(dsbuilder)
+  FileUtils.rm_r Dir.glob('/tmp/ymgallery/assets/projects')
   FileUtils.cp_r(dsbuilder+"/projects", "/tmp/ymgallery/assets/projects")
 end
