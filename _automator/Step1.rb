@@ -76,7 +76,7 @@ end
 # This is really poorly done, but... 
 if Dir.exist?(dsbuilder)
   # Clean it!
-  FileUtils.rm_r Dir.glob(dsbuilder+'/projects/*')
+  FileUtils.rm_f Dir.glob(dsbuilder+'/projects/*')
   projects = Dir[dropbox+"/Yammer Product/**/yamproject.json"]
 
   # Pack all the projects!
