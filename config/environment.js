@@ -40,7 +40,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.baseURL = '/ym-gallery-webapp/'
+    ENV.baseURL = '/pages/yammer/design/'
   }
 
   return ENV;
