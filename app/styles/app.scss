@@ -1,8 +1,14 @@
 @import "_normalize";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
+html {
+  height: 100%;
+}
 body {
-  margin: 84px 0 0 0;
+  margin: 90px 0 0 0;
   color: #6F7883;
+  background: #e8ebed;
+  border-left: 90px solid #2F313A;
 }
 
 a {
@@ -14,6 +20,8 @@ a {
 h1 { 
   font-size: 22px;
   font-weight: normal;
+  text-transform: uppercase;
+  font-family:  'Open Sans',sans-serif;
   a { color: #BCC0C5; }
 }
 
@@ -21,6 +29,7 @@ h2 {
   font-size: 22px;
   font-weight: normal;
   text-transform: uppercase;
+  font-family:  'Open Sans',sans-serif;
 }
 
 .button {
@@ -33,16 +42,37 @@ h2 {
 
 .title {
   position: fixed;
+  height: 60px;
+  margin: 0;
   top: 0;
   left: 0;
   right: 0;
   background: white;
-  padding: 15px 40px;
+  padding: 15px 40px 15px 130px;
   z-index: 2;
+  border-bottom: 2px solid #D9DCDE;
+  .link-home {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 15px;
+    height: 60px;
+    width: 60px;
+    overflow: hidden; 
+    background: #0072C6;
+    border-bottom: 2px solid #2b2d35; 
+    text-align: center;
+    line-height: 4.3em;
+    img {
+      opacity: .4;
+      height: 20px;
+    }
+  }
   .button {
     position: absolute;
     right:40px;
-    margin: 5px 0;
+    margin: 4px 0;
   }
 }
 
@@ -54,10 +84,10 @@ h2 {
   margin: 0 -20px; 
   clear: both;
   letter-spacing: 0;
+  border-bottom: 2px solid #D9DCDE;
 }
 
 .gallery {
-  background: #FFFFFF;
   padding: 0 20px 40px;
   letter-spacing: -4px;
   .ember-view { display: inline; }
@@ -65,13 +95,42 @@ h2 {
     display: inline-block;
     vertical-align: top;
     position: relative;
-    width: 19.8%;
+    width: 320px;
     letter-spacing: 0;
     margin: 30px 0;
     .inner-thumb {
       display: block;
       margin: 0 20px;
     }
-    img { width: 100%; }
+    img { 
+      width: 100%;
+      border: 10px solid white;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07); 
+    }
   }
 }
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(0,0,0,0.8);
+  .overlay-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 130px 0; 
+    text-align: center;
+    overflow: scroll;
+  }
+}
+
+.hide { display: none; }
+.freeze { overflow: hidden; }

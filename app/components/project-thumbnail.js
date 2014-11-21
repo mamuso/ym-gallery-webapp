@@ -32,9 +32,7 @@ export default Ember.Component.extend({
   }.property( 'value' , 'folder' ),
   actions: {
     open: function() {
-      console.log(this);
-      Ember.render('modal', { into: 'application', outlet: 'modal' });
+      this.sendAction('open', this.get('bigUrl'));
     }
   }
-
 });

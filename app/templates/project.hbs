@@ -1,14 +1,21 @@
 <header class='title'>
+  {{#link-to 'projects' classNames='link-home'}}<img src="assets/y.svg">{{/link-to}}
   <a {{bind-attr class=":button" href="ziplink"}}><strong>Download project</strong> (.zip)</a>
-  <h1>
-    {{#link-to 'projects'}}DSN{{/link-to}} {{model.title}}
-  </h1>
+  <h1>{{model.title}}</h1>
 </header>
 
 <section class="gallery">
 {{#each file in model.files}}
   {{#each value in file.children}}
-    {{project-thumbnail value=value folder=file.folder project_id=model.id}}
+    {{project-thumbnail value=value folder=file.folder project_id=model.id open='open'}}
   {{/each}}  
 {{/each}}
+</section>
+
+<section class="overlay hide" id="overlay" {{action 'close'}}>
+  <div class="overlay-content">
+    <div class="overlay-wrap">
+      <img id="overlay-img" >
+    </div>
+  </div>
 </section>
