@@ -2,19 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   img: null,
+  hide: true,
+  freeze: false,
   actions: {
     open: function(img) {
-      console.log(img);
-      Ember.$("#overlay-img").attr("src", img);
-      Ember.$("#overlay").removeClass("hide");
-      Ember.$("body").addClass("freeze");
-      return false;
+      this.set('hide', false); 
+      this.set('freeze', true); 
+      this.set('img', img); 
     },
     close: function() {
-      Ember.$("#overlay-img").attr("src", null);
-      Ember.$("#overlay").addClass("hide");
-      Ember.$("body").removeClass("freeze");
-      return false;
+      this.set('hide', true); 
+      this.set('freeze', false); 
     }
 
   }
