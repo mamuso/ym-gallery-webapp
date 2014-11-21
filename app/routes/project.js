@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     this._super( controller, model );
     model.reload();
     controller.set('model', model);
-    $(document).attr('title', model.get('title')+' — Design Projects');
+    Ember.$(document).attr('title', model.get('title')+' — Design Projects');
     controller.ziplink = "/assets/projects/"+model.get('id')+"/"+model.get('id')+".zip";
   }
 });

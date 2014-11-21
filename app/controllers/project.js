@@ -4,15 +4,16 @@ export default Ember.Controller.extend({
   img: null,
   actions: {
     open: function(img) {
-      $("#overlay-img").attr("src", img);
-      $("#overlay").removeClass("hide");
-      $("body").addClass("freeze");
+      console.log(img);
+      Ember.$("#overlay-img").attr("src", img);
+      Ember.$("#overlay").removeClass("hide");
+      Ember.$("body").addClass("freeze");
       return false;
     },
     close: function() {
-      $("#overlay-img").attr("src", null);
-      $("#overlay").addClass("hide");
-      $("body").removeClass("freeze");
+      Ember.$("#overlay-img").attr("src", null);
+      Ember.$("#overlay").addClass("hide");
+      Ember.$("body").removeClass("freeze");
       return false;
     }
 
