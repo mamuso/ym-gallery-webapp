@@ -3,12 +3,12 @@
       <h2>{{value.folder}}</h2>
     </header>
     {{#each cvalue in value.children}}
-      {{project-thumbnail value=cvalue folder=value.folder project_id=project_id}}      
+      {{project-thumbnail value=cvalue folder=value.folder project_id=project_id open='open'}}
     {{/each}}  
   {{else}}
     <a {{bind-attr href='bigUrl'}} class="thumb">
-      <span class="inner-thumb" {{action 'open'}}>
-        <img {{bind-attr src=thumbUrl}}>
+      <span class="inner-thumb">
+        <img {{bind-attr src=thumbUrl }} {{action 'open'}}>
       </span>
     </a>
   {{/if}}
